@@ -15,23 +15,30 @@ int main()
         cin >> n;
 
         vector<int> arr(n);
-        for (int &i : arr) cin >> i;
-
-        int count = 0;
-       for(int i = 0; i < arr.size(); i++){
-        int sum = accumulate(arr.begin(), arr.end(), 0);
-        arr.pop_back();
-
-        if(sum % 3 == 0){
-            break;
+        for (int i = 0; i < n; i++)
+        {
+            arr[i] = i + 1;
         }
-        else{
-            arr[i]++;
+
+        int maxi = arr[0];
+        for (int i = 0; i < n; i++)
+        {
+            int mx = arr[i + 1] / 2;
+            if (mx > maxi) maxi = mx;
+            else maxi = 1;
+            swap(arr[i], arr[maxi]);
         }
-        count ++;
-       }
-       cout << count << "\n";
-          
+
+        int ans = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (arr[i] == 1)
+            {
+                ans = i;
+                break;
+            }
+        }
+        cout << ans + 1 << "\n";
     }
     return 0;
 }
