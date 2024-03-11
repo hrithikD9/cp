@@ -1,2 +1,2 @@
 
-        for (int &i : arr)
+        int n , m , k;
